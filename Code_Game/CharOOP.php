@@ -110,6 +110,14 @@ class Hero extends Char{
 }
 
 
+// --------------- Monster information ---------------
+class Monster extends Char{
+    //methods Monster -->
+    function greeting(){
+        echo $this->Name;
+    }
+}
+
 //----------------just a test----------------
 $jose = new Hero([
     "Name" => "Jose",
@@ -124,6 +132,15 @@ $jose = new Hero([
 
 $jose->greeting();
 
+$Mon = new Monster([
+    "Name" => "Mon",
+    "HP" => 10,
+    "STR" => 70,
+    "DEF" => 13,
+    "AGI" => 5,
+    "EXP" =>2   
+]);
 
+$Mon->greeting();
 
 ?>
