@@ -104,8 +104,14 @@ class Hero extends Char{
     }
 
     //methods HERO -->
-    function greeting(){
-        echo $this->Name;
+    function status(){
+        echo "The $this->Name : <br>
+            HP: $this->HP <br>
+            STR: $this->STR <br>
+            DEF: $this->DEF <br>
+            AGI: $this->AGI <br>
+            MANA: $this->MANA <br>
+            EXP: $this->EXP <br>";
     }
 }
 
@@ -113,34 +119,14 @@ class Hero extends Char{
 // --------------- Monster information ---------------
 class Monster extends Char{
     //methods Monster -->
-    function greeting(){
-        echo $this->Name;
-    }
+    function status(){
+        echo "The $this->Name : <br>
+            HP: $this->HP <br>
+            STR: $this->STR <br>
+            DEF: $this->DEF <br>
+            AGI: $this->AGI <br>
+            EXP: $this->EXP <br>";
+    }   
 }
-
-//----------------just a test----------------
-$jose = new Hero([
-    "Name" => "Jose",
-    "HP" => 10,
-    "STR" => 70,
-    "DEF" => 13,
-    "AGI" => 5,
-    "EXP" =>2,
-    "MANA" => 5,
-    "MyBag" => 10   
-]);
-
-$jose->greeting();
-
-$Mon = new Monster([
-    "Name" => "Mon",
-    "HP" => 10,
-    "STR" => 70,
-    "DEF" => 13,
-    "AGI" => 5,
-    "EXP" =>2   
-]);
-
-$Mon->greeting();
 
 ?>
