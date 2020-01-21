@@ -4,12 +4,12 @@
 class Char{
 
     //Properties CHAR -->
-    private $Name;
-    private $HP;
-    private $STR;
-    private $DEF;
-    private $AGI;
-    private $EXP;
+    protected $Name;
+    protected $HP;
+    protected $STR;
+    protected $DEF;
+    protected $AGI;
+    protected $EXP;
 
     //getters CHAR -->
     function getName() {
@@ -104,8 +104,8 @@ class Hero extends Char{
     }
 
     //methods HERO -->
-    function greeting(HERO $obj){
-        echo $obj->Name;
+    function greeting(){
+        echo $this->Name;
     }
 }
 
