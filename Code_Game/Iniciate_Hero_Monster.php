@@ -6,12 +6,12 @@ require_once "Iniciate_Bag.php";
 
 // INICIATE HEROS --------->
 //WARRIOR----------->
-$Frodo = new Hero(["Name" => "Warrior","HP" => 15, "STR" => 5, "DEF" => 3, "AGI" => 3, "EXP" =>1, "MANA" => true, "MyBag" => array($arrItem[0])]);
+$Frodo = new Hero(["Name" => "Frodo","HP" => 15, "STR" => 5, "DEF" => 3, "AGI" => 3, "EXP" =>1, "MANA" => true, "MyBag" => array($arrItem[0])]);
 $Vercingetorix = new Hero(["Name" => "Vercingetorix","HP" => 18, "STR" => 5, "DEF" => 2, "AGI" => 4, "EXP" =>10, "MANA" => true, "MyBag" => array()]);
 $Arthur = new Hero(["Name" => "Arthur","HP" => 20, "STR" => 7, "DEF" => 3, "AGI" => 6, "EXP" =>10, "MANA" => true, "MyBag" => array()]);
 $Joan_of_Arc = new Hero(["Name" => "Joan of Arc","HP" => 20, "STR" => 8, "DEF" => 3, "AGI" => 6, "EXP" =>20, "MANA" => true, "MyBag" => array()]);
 $WonderWoman = new Hero(["Name" => "WonderWoman","HP" => 21, "STR" => 9, "DEF" => 3, "AGI" => 6, "EXP" =>32, "MANA" => true, "MyBag" => array()]);
-$Aragorn = new Hero(["Name" => "WarLord","HP" => 23, "STR" => 10, "DEF" => 4, "AGI" => 6, "EXP" =>50, "MANA" => true, "MyBag" => array()]);
+$Aragorn = new Hero(["Name" => "Aragorn","HP" => 23, "STR" => 10, "DEF" => 4, "AGI" => 6, "EXP" =>50, "MANA" => true, "MyBag" => array()]);
 $Thor = new Hero(["Name" => "Thor","HP" => 25, "STR" => 11, "DEF" => 4, "AGI" => 10, "EXP" =>70, "MANA" => true, "MyBag" => array()]);
 
 //ARCHER----------->
@@ -24,13 +24,13 @@ $Legolas = new Hero(["Name" => "Legolas","HP" => 23, "STR" => 10, "DEF" => 4, "A
 $Robin_Hood = new Hero(["Name" => "Robin Hood","HP" => 25, "STR" => 11, "DEF" => 4, "AGI" => 10, "EXP" =>70, "MANA" => true, "MyBag" => array()]);
 
 //MAGE----------->
-$HarryPoter = new Hero(["Name" => "Harry Poter","HP" => 15, "STR" => 5, "DEF" => 3, "AGI" => 3, "EXP" =>1, "MANA" => true, "MyBag" => array()]);
-$Roma = new Hero(["Name" => "Roma","HP" => 18, "STR" => 5, "DEF" => 2, "AGI" => 4, "EXP" =>10, "MANA" => true, "MyBag" => array()]);
-$Drona = new Hero(["Name" => "Drona","HP" => 20, "STR" => 7, "DEF" => 3, "AGI" => 6, "EXP" =>10, "MANA" => true, "MyBag" => array()]);
-$Cupid = new Hero(["Name" => "Cupid","HP" => 20, "STR" => 8, "DEF" => 3, "AGI" => 6, "EXP" =>20, "MANA" => true, "MyBag" => array()]);
-$Artemis = new Hero(["Name" => "Artemis","HP" => 21, "STR" => 9, "DEF" => 3, "AGI" => 6, "EXP" =>32, "MANA" => true, "MyBag" => array()]);
-$Legolas = new Hero(["Name" => "Legolas","HP" => 23, "STR" => 10, "DEF" => 4, "AGI" => 6, "EXP" =>50, "MANA" => true, "MyBag" => array()]);
-$Robin_Hood = new Hero(["Name" => "Robin Hood","HP" => 25, "STR" => 11, "DEF" => 4, "AGI" => 10, "EXP" =>70, "MANA" => true, "MyBag" => array()]);
+$Presto = new Hero(["Name" => "Presto","HP" => 15, "STR" => 5, "DEF" => 3, "AGI" => 3, "EXP" =>1, "MANA" => true, "MyBag" => array()]);
+$HarryPoter = new Hero(["Name" => "HarryPoter","HP" => 18, "STR" => 5, "DEF" => 2, "AGI" => 4, "EXP" =>10, "MANA" => true, "MyBag" => array()]);
+$MisterM = new Hero(["Name" => "Mister-M","HP" => 20, "STR" => 7, "DEF" => 3, "AGI" => 6, "EXP" =>10, "MANA" => true, "MyBag" => array()]);
+$MickeyMouse = new Hero(["Name" => "Mickey Mouse","HP" => 20, "STR" => 8, "DEF" => 3, "AGI" => 6, "EXP" =>20, "MANA" => true, "MyBag" => array()]);
+$Gandalf = new Hero(["Name" => "Gandalf","HP" => 21, "STR" => 9, "DEF" => 3, "AGI" => 6, "EXP" =>32, "MANA" => true, "MyBag" => array()]);
+$Merlin = new Hero(["Name" => "Merlin","HP" => 23, "STR" => 10, "DEF" => 4, "AGI" => 6, "EXP" =>50, "MANA" => true, "MyBag" => array()]);
+$Clotilde71 = new Hero(["Name" => "Clotilde71","HP" => 25, "STR" => 11, "DEF" => 4, "AGI" => 10, "EXP" =>70, "MANA" => true, "MyBag" => array()]);
 
 
 
@@ -56,7 +56,7 @@ $arrWarrior = [$Frodo, $arrItem, $Vercingetorix, $Arthur, $Joan_of_Arc, $WonderW
 //Archer-->
 $arrArcher = [$Eklavya, $Roma, $Drona, $Cupid, $Artemis, $Legolas, $Robin_Hood];
 //Mage-->
-$arrMage = [];
+$arrMage = [$Presto, $HarryPoter, $MisterM, $MickeyMouse, $Gandalf, $Merlin, $Clotilde71];
 
 
 //MONSTER- ------------>
