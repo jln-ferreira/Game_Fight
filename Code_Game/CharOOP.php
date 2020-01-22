@@ -73,14 +73,14 @@ class Hero extends Char{
 
     // Properties HERO -->
     private $MANA;
-    private $MyBag;
+    private $MyBag = array();
 
     //getters HERO -->
     function getMANA() {
-        return $this->length;
+        return $this->MANA;
     } 
      function getMyBag() {
-        return $this->length;
+        return $this->MyBag;
     }
 
     //setters HERO -->

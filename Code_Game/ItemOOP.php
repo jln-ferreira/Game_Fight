@@ -60,18 +60,4 @@ class Item{
             DEF: $this->DEF <br>";
     }   
 }
-
-
-//----------------just a test----------------
-$jose = new Item([
-    "Name" => "Jose",
-    "HP" => 10,
-    "STR" => 70,
-    "DEF" => 13 
-]);
-
-$jose->status();
-
-
-
 ?>
