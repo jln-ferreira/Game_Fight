@@ -50,13 +50,15 @@ $MichaelJackson = new Monster(["Name" => "MichaelJackson", "HP" => 123, "STR" =>
 
 
 //DATA STRUCTURE (ARRAY)
-//HERO ---------------->
 //Warrior->
 $arrWarrior = [$Frodo, $Vercingetorix, $Arthur, $Joan_of_Arc, $WonderWoman, $Aragorn, $Thor];
 //Archer-->
 $arrArcher = [$Eklavya, $Roma, $Drona, $Cupid, $Artemis, $Legolas, $Robin_Hood];
 //Mage-->
 $arrMage = [$Presto, $HarryPoter, $MisterM, $MickeyMouse, $Gandalf, $Merlin, $Clotilde71];
+
+//HEROS!! ------------->
+$arrHEROS = [$arrWarrior, $arrArcher, $arrMage];
 
 
 //MONSTER- ------------>
