@@ -35,14 +35,14 @@ $Clotilde71 = new Hero(["Name" => "Clotilde71","HP" => 25, "STR" => 11, "DEF" =>
 
 
 // INICIATE MONSTERS ------->
-$Spider = new Monster(["Name" => "Spider", "HP" => 7, "STR" => 4, "DEF" => 1, "AGI" => 1, "EXP" =>1]);
+$Goblin = new Monster(["Name" => "Goblin", "HP" => 7, "STR" => 4, "DEF" => 1, "AGI" => 1, "EXP" =>1]);
 $Bull = new Monster(["Name" => "Bull", "HP" => 13, "STR" => 4, "DEF" => 2, "AGI" => 2, "EXP" =>5]);
 $Skeleton = new Monster(["Name" => "Skeleton", "HP" => 15, "STR" => 6, "DEF" => 1, "AGI" => 3, "EXP" =>7]);
-$Lich = new Monster(["Name" => "Lich", "HP" => 16, "STR" => 6, "DEF" => 2, "AGI" => 3, "EXP" =>10]);
+$Orc = new Monster(["Name" => "Orc", "HP" => 16, "STR" => 6, "DEF" => 2, "AGI" => 3, "EXP" =>10]);
 $Golen = new Monster(["Name" => "Golen", "HP" => 18, "STR" => 6, "DEF" => 2, "AGI" => 4, "EXP" =>15]);
 $Yety = new Monster(["Name" => "Yety", "HP" => 20, "STR" => 6, "DEF" => 3, "AGI" => 6, "EXP" =>19]);
 $Warewolf = new Monster(["Name" => "Warewolf", "HP" => 25, "STR" => 6, "DEF" => 4, "AGI" => 10, "EXP" =>28]);
-$Queen_Bee = new Monster(["Name" => "Queen_Bee", "HP" => 27, "STR" => 7, "DEF" => 5, "AGI" => 20, "EXP" =>32]);
+$StoneMan = new Monster(["Name" => "Stone Man", "HP" => 27, "STR" => 7, "DEF" => 5, "AGI" => 20, "EXP" =>32]);
 $Nightmare = new Monster(["Name" => "Nightmare", "HP" => 35, "STR" => 8, "DEF" => 5, "AGI" => 15, "EXP" =>39]);
 $Erohim = new Monster(["Name" => "Erohim", "HP" => 45, "STR" => 10, "DEF" => 8, "AGI" => 15, "EXP" =>45]);
 $Devil = new Monster(["Name" => "Devil", "HP" => 55, "STR" => 12, "DEF" => 7, "AGI" => 20, "EXP" =>66]);
@@ -52,7 +52,7 @@ $MichaelJackson = new Monster(["Name" => "MichaelJackson", "HP" => 123, "STR" =>
 //DATA STRUCTURE (ARRAY)
 //HERO ---------------->
 //Warrior->
-$arrWarrior = [$Frodo, $arrItem, $Vercingetorix, $Arthur, $Joan_of_Arc, $WonderWoman, $Aragorn, $Thor];
+$arrWarrior = [$Frodo, $Vercingetorix, $Arthur, $Joan_of_Arc, $WonderWoman, $Aragorn, $Thor];
 //Archer-->
 $arrArcher = [$Eklavya, $Roma, $Drona, $Cupid, $Artemis, $Legolas, $Robin_Hood];
 //Mage-->
@@ -60,7 +60,7 @@ $arrMage = [$Presto, $HarryPoter, $MisterM, $MickeyMouse, $Gandalf, $Merlin, $Cl
 
 
 //MONSTER- ------------>
-$arrMonster = [$Spider, $Bull, $Skeleton, $Lich, $Golen, $Yety, $Warewolf, $Queen_Bee, $Nightmare, $Erohim, $Devil, $MichaelJackson];
+$arrMonster = [$Goblin, $Bull, $Skeleton, $Orc, $Golen, $Yety, $Warewolf, $StoneMan, $Nightmare, $Erohim, $Devil, $MichaelJackson];
 
 
 
@@ -73,7 +73,7 @@ $arrMonster = [$Spider, $Bull, $Skeleton, $Lich, $Golen, $Yety, $Warewolf, $Quee
 
 
 //access itens
-echo $arrHero[0]->getMyBag()[0]->getName(); 
+//echo $arrWarrior[0]->getMyBag()[0]->getName(); 
 
 
 ?>
