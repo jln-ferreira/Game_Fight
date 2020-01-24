@@ -142,12 +142,26 @@ class Hero extends Char{
 class Monster extends Char{
     //methods Monster -->
     function status(){
-        echo "The $this->Name : <br>
-            HP: $this->HP <br>
-            STR: $this->STR <br>
-            DEF: $this->DEF <br>
-            AGI: $this->AGI <br>
-            EXP: $this->EXP <br>";
+        return "<table class='table table-sm'>
+                  <tr>
+                    <th colspan='2'>$this->Name</th>
+                  </tr>
+                  <tr>
+                    <td>HP</td>
+                    <td>$this->HP</td>
+                  </tr>
+                    <tr>
+                    <td>STR</td>
+                    <td>$this->STR</td>
+                  </tr>
+                    <tr>
+                    <td>DEF</td>
+                    <td>$this->DEF</td>
+                  </tr>
+                    <tr>
+                    <td>AGI</td>
+                    <td>$this->AGI</td>
+                </table>";
     }   
 }
 

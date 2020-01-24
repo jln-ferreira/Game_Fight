@@ -6,7 +6,7 @@ require_once "Header.html";
 require_once "Iniciate_Hero_Monster.php";
 require_once "Iniciate_Bag.php";
 
-
+$nameHero = ["Warrior", "Archer", "Wizard"]; //NAME FOR EACH FIGHTER 
 
 ?>
 
@@ -27,11 +27,10 @@ require_once "Iniciate_Bag.php";
 		<?php 
 
 			$LenghHeroArr = sizeof($arrHEROS); // Count the number of heroes (3)
-			$nameHero = ["Warrior", "Archer", "Wizard"]; //give name to each hero to CHOOSE
-
+			
 			for ($i=0; $i < $LenghHeroArr; $i++) { 
-				echo "<a class='send_Hero' href='GameBattle_StartBattle.php?HeroFight=" . $i ."'>
-						<div class='HeroChoose col-xs-6 col-md-4'>
+				echo "<div class='HeroChoose col-xs-6 col-md-4'>
+						<a style='text-decoration: inherit;' class='send_Hero' href='GameBattle_StartBattle.php?HeroFight=" . $i ."'>
 							<div class='card' >
 								<img src='../image/ShowHero/show" . $i . ".gif'> 
 								<div class='card-body' style='padding-bottom: 2px'>
@@ -39,8 +38,9 @@ require_once "Iniciate_Bag.php";
 									<p class='card-text'>" . $arrHEROS[$i][0]->status() . "</p>
 								</div>
 							</div>
-						</div>
-					</a>";
+						</a>
+					  </div>
+					";
 			}
 
 		?>
