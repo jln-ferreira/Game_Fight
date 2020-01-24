@@ -1,0 +1,30 @@
+/*----------------------- GAMEBATTLE.php ------------------------*/
+/*Style Of the CHOOSE HEROES:*/
+.send_Hero{
+    text-decoration: inherit;
+    font-style: none;
+    color: black;
+}
+.HeaderHero{ /*CHOOSE YOUR HERO*/
+    display: block;
+    width: 100%;
+    font-size: 5.154rem;
+    line-height: 6.154rem;
+    font-weight: 800;
+    margin-bottom: 2.308rem;
+    text-transform: uppercase;
+}
+.card{/*Good size of the images*/
+    width: 18rem;
+}
+.card:hover{/*Hover the chose Hero*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/*----------------------- GABEBATTLE_STARTBATTLE.php ------------------------*/
+#ArenaImage{ /*fix image ARENA*/
+    width: 100%;
+    height: auto;
+}
+    
