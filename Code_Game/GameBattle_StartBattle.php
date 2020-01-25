@@ -56,33 +56,33 @@
 		<?php 
 		
 
-			echo "<div class='char col-xs-6 col-md-6'> 
-						<div class='card' >
+			echo "<div class='' style='width:90%;margin:0 auto;'> 
+						<div id='hero_card' class='card' style='position:relative;bottom:39%;left:27%;margin-left:0px;margin-right:0px;'>
 							<h5 class='card-title'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getName()  . "</h5>
 							<div class='w3-light-grey'>
 									<div class='w3-container w3-green w3-center' style='width:25%''>25%</div>
 								</div>
 							<img src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Walk.gif'> 
 						</div>
-
-						<div class='card' >
-							<div class='card-body' style='padding-bottom: 2px'>
-								<p class='card-text'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->status() . "</p>
-							</div>
-						</div>
-
-
-						<div class='card' >
+						<div id='monster_card' class='card'  style='position:relative;bottom:72%;left:55%;margin-left:0px;margin-right:0px;'>
 							<h5 class='card-title'>" . $arrMonster[$_SESSION["LevelMonster"]]->getName()  . "</h5>
 							<div class='w3-light-grey'>
 									<div class='w3-container w3-green w3-center' style='width:25%''>25%</div>
 								</div>
 							<img src='../image/" . $_SESSION["LevelMonster"] . "MonsterWalk.gif'> 
 						</div>
+						
+						<div class='informations' style='position:relative;bottom:63%;'>
+							<div class='card' style='display:inline-block;vertical-align:top;float:left;'>
+								<div class='card-body' style='padding-bottom: 2px'>
+									<p class='card-text'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->status() . "</p>
+								</div>
+							</div>
 
-						<div class='card' >
-							<div class='card-body' style='padding-bottom: 2px'>
-								<p class='card-text'>" . $arrMonster[$_SESSION["LevelMonster"]]->status() . "</p>
+							<div class='card' style='display:inline-block;vertical-align:top;float:right;'>
+								<div class='card-body' style='padding-bottom: 2px'>
+									<p class='card-text'>" . $arrMonster[$_SESSION["LevelMonster"]]->status() . "</p>
+								</div>
 							</div>
 						</div>
 
