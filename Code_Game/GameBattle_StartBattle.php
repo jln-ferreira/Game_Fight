@@ -147,7 +147,7 @@ nav{
 					</div>
 
 
-					<div id='BattleRow1' class='row' style='display: none;''>	
+					<div id='BattleRow1' class='row' style='display: none;margin-left:10px;margin-right:10px;margin-top:10px;'>	
 					<div class='informations' style='display:block;width:100%;margin:0 auto;'>
 						<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:left;width:20%;'>
 							<div class='card-body' style='padding-bottom: 2px'>
@@ -155,6 +155,13 @@ nav{
 							</div>
 						</div>
 
+						<div id='control' style='display:inline-block;vertical-align:top;width:25%; margin:0 auto;'>	
+							<button id='Attack' type='button' class='btn btn-primary' >Attack</button>
+							<button id='Special_attack' type='button' class='btn btn-primary'>Special Attack</button>
+							<button id='Bag' type='button' class='btn btn-primary'>Bag</button>
+							<button id='Run' type='button' class='btn btn-primary'>Run</button>
+						</div>
+						
 						<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:right;width:20%;'>
 							<div class='card-body' style='padding-bottom: 2px'>
 								<p class='card-text'>" . $arrMonster[$_SESSION["LevelMonster"]]->status() . "</p>
