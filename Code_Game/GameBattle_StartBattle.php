@@ -32,6 +32,37 @@
   text-align: center;
   color: white;
 }
+
+.btn-home{
+  margin: 10px auto;
+  width: 250px;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  font-family: 'Skranji', cursive;
+  color: #ffc000;
+  font-size: 18px;
+  font-weight: 400;
+  text-shadow: 0 1px 3px #000;
+  text-align: center;
+  padding: 10px 0;
+  background: radial-gradient(circle, #8b0000, #8b0000);
+  border-top: 4px ridge #ffb000;
+  border-left: 4px groove #ffb000;
+  border-right: 4px ridge #ffb000;
+  border-bottom: 4px groove #ffb000;
+  box-shadow: inset 0px 0px 5px 3px rgba(1,1,1,0.3);
+}
+
+.btn-home:hover{
+  background: radial-gradient(circle, #e52b2b, #8b0000);
+  box-shadow: 0px 0 5px 5px rgba(255,255,255,0.2)
+}
+
+.btn-home:active{
+  background: radial-gradient(circle, #ec6a6a, #e52b2b);
+  box-shadow: 0px 0 5px 5px rgba(255,255,255,0.2)
+}
+
 @media only screen and (max-width: 1180px) {
 #hero_card{
 	left: 180px;
@@ -125,52 +156,53 @@ nav{
 		<img id="ArenaImage" src="../image/Arena/Arena.gif"> <!-- IMAGE ARENA -->
 
 
-		<?php 
+<?php 
 		
 
-			echo "	<div class='imgheros' '>
-						<div id='hero_card' >
-							<h5 class='card-title' style='width:100%;color:black'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getName()  . "</h5>
-							<div class='w3-light-grey' style='width:100%;'>
-									<div class='w3-container w3-green w3-center' style='width:25%;'>25%</div>
-								</div>
-							<img style='width:100%;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Walk.gif'> 
-						</div>
-						<div id='monster_card' >
-							<h5 class='card-title' style='width:100%;color:black;'>" . $arrMonster[$_SESSION["LevelMonster"]]->getName()  . "</h5>
-							<div class='w3-light-grey' style='width:100%;'>
-									<div class='w3-container w3-green w3-center' style='width:25%''>25%</div>
-								</div>
-							<img style='width:100%;' src='../image/" . $_SESSION["LevelMonster"] . "MonsterWalk.gif'> 
-						</div>
-					</div>
-					</div>
+echo "<div class='imgheros' '>
+			<div id='hero_card' >
+				<h5 class='card-title' style='width:100%;color:black'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getName()  . "</h5>
+				<div class='w3-light-grey' style='width:100%;'>
+						<div class='w3-container w3-green w3-center' style='width:25%;'>25%</div>
+				</div>
+				<img id='heroWalk' style='width:100%;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Walk.gif'> 
+				<img id='heroAttack' style='width:100%; display:none;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Attack.gif'> 
+			</div>
+
+			<div id='monster_card' >
+				<h5 class='card-title' style='width:100%;color:black;'>" . $arrMonster[$_SESSION["LevelMonster"]]->getName()  . "</h5>
+				<div class='w3-light-grey' style='width:100%;'>
+						<div class='w3-container w3-green w3-center' style='width:25%''>25%</div>
+				</div>
+				<img style='width:100%;' src='../image/" . $_SESSION["LevelMonster"] . "MonsterWalk.gif'> 
+			</div>
+		</div>
+	</div>
 
 
-					<div id='BattleRow1' class='row' style='display: none;margin-left:10px;margin-right:10px;margin-top:10px;'>	
-					<div class='informations' style='display:block;width:100%;margin:0 auto;'>
-						<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:left;width:20%;'>
-							<div class='card-body' style='padding-bottom: 2px'>
-								<p class='card-text'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->status() . "</p>
-							</div>
-						</div>
+	<div id='BattleRow1' class='row' style='display: none;margin-left:10px;margin-right:10px;margin-top:10px;'>	
+		<div class='informations' style='display:block;width:100%;margin:0 auto;'>
+			<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:left;width:20%;'>
+				<div class='card-body' style='padding-bottom: 2px'>
+					<p class='card-text'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->status() . "</p>
+				</div>
+			</div>
 
-						<div id='control' style='display:inline-block;vertical-align:top;width:25%; margin:0 auto;'>	
-							<button id='Attack' type='button' class='btn btn-primary' >Attack</button>
-							<button id='Special_attack' type='button' class='btn btn-primary'>Special Attack</button>
-							<button id='Bag' type='button' class='btn btn-primary'>Bag</button>
-							<button id='Run' type='button' class='btn btn-primary'>Run</button>
-						</div>
-						
-						<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:right;width:20%;'>
-							<div class='card-body' style='padding-bottom: 2px'>
-								<p class='card-text'>" . $arrMonster[$_SESSION["LevelMonster"]]->status() . "</p>
-							</div>
-						</div>
-					</div>";
-
-		?>
-		</div>  <!-- End Second Container -->
+			<div id='control' style='display:inline-block;vertical-align:top;width:25%; margin:0 auto;'>	
+				<button id='Attack' type='button' class='btn-home' >Attack</button><br>
+				<button id='Bag' type='button' class='btn-home' style='width:122px;'>Bag</button>
+				<button id='Run' type='button' class='btn-home' style='width:122px;'>Run</button>
+				<button id='Special_attack' type='button' class='btn-home'>Special Attack</button>
+			</div>
+			
+			<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:right;width:20%;'>
+				<div class='card-body' style='padding-bottom: 2px'>
+					<p class='card-text'>" . $arrMonster[$_SESSION["LevelMonster"]]->status() . "</p>
+				</div>
+			</div>
+		</div>";
+?>
+	</div>  <!-- End Second Container JOYSTICK -->
 
 	
 	
@@ -179,12 +211,22 @@ nav{
 
 
 <script>
-	
+	//start the page
 	//Fight And desapears
 	$(document).ready(function(){
 		$(".HeaderHero").fadeOut(2000, function(){
 	 		$("#BattleRow").fadeIn();
 	 		$("#BattleRow1").fadeIn();
+		});
+	});
+
+	//PLAY WITH JOYSTICK!
+	$(document).ready(function(){
+		$("#Attack").click(function(){
+			$("#heroWalk").hide();
+			$("#heroAttack").show();
+			
+			<?php echo $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getHP(); ?>
 		});
 	});
 </script>
