@@ -211,6 +211,24 @@ echo "<div class='imgheros' '>
 
 
 <script>
+	//status Hero------>
+	var Hero_Name = document.getElementById("status_hero_Name");
+	var Hero_HP = document.getElementById("status_hero_HP");
+	var Hero_STR = document.getElementById("status_hero_STR");
+	var Hero_DEF = document.getElementById("status_hero_DEF");
+	var Hero_AGI = document.getElementById("status_hero_AGI");
+	var Hero_MANA = document.getElementById("status_hero_MANA");
+	var Hero_EXP = document.getElementById("status_hero_EXP");
+
+	//status Monster------>
+	var Monster_Name = document.getElementById("status_monster_Name");
+	var Monster_HP = document.getElementById("status_monster_HP");
+	var Monster_STR = document.getElementById("status_monster_STR");
+	var Monster_DEF = document.getElementById("status_monster_DEF");
+	var Monster_AGI = document.getElementById("status_monster_AGI");
+
+
+
 	//start the page
 	//Fight And desapears
 	$(document).ready(function(){
@@ -225,8 +243,10 @@ echo "<div class='imgheros' '>
 		$("#Attack").click(function(){
 			$("#heroWalk").hide();
 			$("#heroAttack").show();
-			
-			<?php echo $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getHP(); ?>
+
+			Monster_HP.innerHTML = Monster_HP.innerHTML - Hero_STR.innerHTML + Monster_DEF.innerHTML;
+
+
 		});
 	});
 </script>

@@ -105,33 +105,33 @@ class Hero extends Char{
 
     //methods HERO -->
     function status(){
-        return "<table class='table table-sm'>
+        return "<table id='status_hero' class='table table-sm'>
                   <tr>
-                    <th colspan='2'>$this->Name</th>
+                    <th id='status_hero_Name' colspan='2'>$this->Name</th>
                   </tr>
                   <tr>
                     <td>HP</td>
-                    <td>$this->HP</td>
+                    <td id='status_hero_HP'>$this->HP</td>
                   </tr>
                     <tr>
                     <td>STR</td>
-                    <td>$this->STR</td>
+                    <td id='status_hero_STR'>$this->STR</td>
                   </tr>
                     <tr>
                     <td>DEF</td>
-                    <td>$this->DEF</td>
+                    <td id='status_hero_DEF'>$this->DEF</td>
                   </tr>
                     <tr>
                     <td>AGI</td>
-                    <td>$this->AGI</td>
+                    <td id='status_hero_AGI'>$this->AGI</td>
                   </tr>
                     <tr>
                     <td>MANA</td>
-                    <td>$this->MANA</td>
+                    <td id='status_hero_MANA'>$this->MANA</td>
                   </tr>
                     <tr>
                     <td>EXP</td>
-                    <td>$this->EXP</td>
+                    <td id='status_hero_EXP'>$this->EXP</td>
                   </tr>
              </table>";
     }    
@@ -144,23 +144,23 @@ class Monster extends Char{
     function status(){
         return "<table class='table table-sm'>
                   <tr>
-                    <th colspan='2'>$this->Name</th>
+                    <th id='status_monster_Name' colspan='2'>$this->Name</th>
                   </tr>
                   <tr>
                     <td>HP</td>
-                    <td>$this->HP</td>
+                    <td id='status_monster_HP'>$this->HP</td>
                   </tr>
                     <tr>
                     <td>STR</td>
-                    <td>$this->STR</td>
+                    <td id='status_monster_STR'>$this->STR</td>
                   </tr>
                     <tr>
                     <td>DEF</td>
-                    <td>$this->DEF</td>
+                    <td id='status_monster_DEF'>$this->DEF</td>
                   </tr>
                     <tr>
                     <td>AGI</td>
-                    <td>$this->AGI</td>
+                    <td id='status_monster_AGI'>$this->AGI</td>
                 </table>";
     }   
 }
