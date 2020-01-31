@@ -145,12 +145,11 @@ nav{
 ?>
 
 
-
-
 <!----------------- MAIN Container -------------------->
 <div class="container-fluid bg-1 text-center">
 
 	<h2 class="HeaderHero">Fight!</h2> <!-- Header -->
+
 	<div id="BattleRow" class="row" style="display: none;">
 
 		<img id="ArenaImage" src="../image/Arena/Arena.gif"> <!-- IMAGE ARENA -->
@@ -174,7 +173,9 @@ echo "<div class='imgheros' '>
 				<div class='w3-light-grey' style='width:100%;'>
 						<div class='w3-container w3-green w3-center' style='width:25%''>25%</div>
 				</div>
-				<img style='width:100%;' src='../image/" . $_SESSION["LevelMonster"] . "MonsterWalk.gif'> 
+				<img id='monsterWalk' style='width:100%;' src='../image/" . $_SESSION["LevelMonster"] . "MonsterWalk.gif'> 
+				<img id='monsterAttack' style='width:100%; display:none;' src='../image/" . $_SESSION["LevelMonster"] . "MonsterAttack.gif'>
+				<img id='monsterDeath' style='width:100%; display:none;' src='../image/" . $_SESSION["LevelMonster"] . "MonsterDeath.gif'> 
 			</div>
 		</div>
 	</div>
@@ -194,6 +195,9 @@ echo "<div class='imgheros' '>
 				<button id='Run' type='button' class='btn-home' style='width:122px;'>Run</button>
 				<button id='Special_attack' type='button' class='btn-home'>Special Attack</button>
 			</div>
+
+			<button id='nxtMonster' style='display:none;' type='button' class='btn btn-success'>NEXT MONSTER</button>
+			<button id='gameOver' style='display:none;' type='button' class='btn btn-danger'>GAME OVER</button>
 			
 			<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:right;width:20%;'>
 				<div class='card-body' style='padding-bottom: 2px'>
@@ -211,6 +215,13 @@ echo "<div class='imgheros' '>
 
 
 <script>
+	//joystick buttons
+	var Button_Attack = document.getElementById("Attack");
+	var Button_Bag = document.getElementById("Bag");
+	var Button_Run = document.getElementById("Run");
+	var Button_SAttack = document.getElementById("Special_attack");
+
+
 	//status Hero------>
 	var Hero_Name = document.getElementById("status_hero_Name");
 	var Hero_HP = document.getElementById("status_hero_HP");
@@ -227,7 +238,18 @@ echo "<div class='imgheros' '>
 	var Monster_DEF = document.getElementById("status_monster_DEF");
 	var Monster_AGI = document.getElementById("status_monster_AGI");
 
-
+	//functions --------->
+	function BlockAll_Button(){
+		//block all button from JOYSTICK
+		Button_Attack.style.cursor = 'not-allowed';
+		Button_Attack.style.pointerEvents = "none";
+		Button_Bag.style.cursor = 'not-allowed';
+		Button_Bag.style.pointerEvents = "none";
+		Button_Run.style.cursor = 'not-allowed';
+		Button_Run.style.pointerEvents = "none";
+		Button_SAttack.style.cursor = 'not-allowed';
+		Button_SAttack.style.pointerEvents = "none";
+	}
 
 	//start the page
 	//Fight And desapears
@@ -240,11 +262,42 @@ echo "<div class='imgheros' '>
 
 	//PLAY WITH JOYSTICK!
 	$(document).ready(function(){
+		//----------------------------CLICK ATTACK-----------------------------
 		$("#Attack").click(function(){
+
+			//change hero to attack mode
 			$("#heroWalk").hide();
 			$("#heroAttack").show();
 
-			Monster_HP.innerHTML = Monster_HP.innerHTML - Hero_STR.innerHTML + Monster_DEF.innerHTML;
+			//change monster to attack mode
+			$("#monsterWalk").hide();
+			$("#monsterAttack").show();
+
+			//compair AGI;
+			//if the hero has more AGI than monster, he will attack first
+			if(Hero_AGI.innerHTML >= Monster_AGI.innerHTML){
+				//attack HERO
+				Monster_HP.innerHTML = Monster_HP.innerHTML - (Hero_STR.innerHTML - Monster_DEF.innerHTML);
+
+				//if the monster didnt die
+				if(Monster_HP.innerHTML >= 0){
+					//attack MONSTER
+					Hero_HP.innerHTML = Hero_HP.innerHTML - (Monster_STR.innerHTML - Hero_DEF.innerHTML);
+				}else{ //monster died!
+
+					//block all button from JOYSTICK
+					BlockAll_Button();
+					//change monster to attack mode
+					$("#monsterAttack").hide();
+					$("#monsterDeath").show();
+
+					//after kill monster
+					Button_Attack.innerHTML = "You killed " + Monster_Name.innerHTML;
+					$("#nxtMonster").fadeIn();
+					
+				}
+			}
+			
 
 
 		});
