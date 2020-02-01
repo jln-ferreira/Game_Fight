@@ -162,7 +162,7 @@ echo "<div class='imgheros' '>
 			<div id='hero_card' >
 				<h5 class='card-title' style='width:100%;color:black'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getName()  . "</h5>
 				<div class='w3-light-grey' style='width:100%;'>
-						<div class='w3-container w3-green w3-center' style='width:25%;'>25%</div>
+						<div id='hpHero_greenLife' class='w3-container w3-green w3-center' style='width:100%;'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getHP() . "</div>
 				</div>
 				<img id='heroWalk' style='width:100%;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Walk.gif'> 
 				<img id='heroAttack' style='width:100%; display:none;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Attack.gif'> 
@@ -171,7 +171,7 @@ echo "<div class='imgheros' '>
 			<div id='monster_card' >
 				<h5 class='card-title' style='width:100%;color:black;'>" . $arrMonster[$_SESSION["LevelMonster"]]->getName()  . "</h5>
 				<div class='w3-light-grey' style='width:100%;'>
-						<div class='w3-container w3-green w3-center' style='width:25%''>25%</div>
+						<div id='hpMonster__greenLife' class='w3-container w3-green w3-center' style='width:100%''>". $arrMonster[$_SESSION["LevelMonster"]]->getHP() . "</div>
 				</div>
 				<img id='monsterWalk' style='width:100%;' src='../image/" . $_SESSION["LevelMonster"] . "MonsterWalk.gif'> 
 				<img id='monsterAttack' style='width:100%; display:none;' src='../image/" . $_SESSION["LevelMonster"] . "MonsterAttack.gif'>
@@ -221,6 +221,12 @@ echo "<div class='imgheros' '>
 	var Button_Run = document.getElementById("Run");
 	var Button_SAttack = document.getElementById("Special_attack");
 
+	//HP FIXED
+	var fixHeroHP = document.getElementById("hpHero_greenLife").innerHTML;
+	var fixMonsterHp = document.getElementById("hpMonster__greenLife").innerHTML;
+	//HP CHAR
+	var hpHero_greenLife = document.getElementById("hpHero_greenLife");
+	var hpMonster__greenLife = document.getElementById("hpMonster__greenLife");
 
 	//status Hero------>
 	var Hero_Name = document.getElementById("status_hero_Name");
@@ -238,7 +244,9 @@ echo "<div class='imgheros' '>
 	var Monster_DEF = document.getElementById("status_monster_DEF");
 	var Monster_AGI = document.getElementById("status_monster_AGI");
 
-	//functions --------->
+
+
+	//FUNCTIONS ----------------->
 	function BlockAll_Button(){
 		//block all button from JOYSTICK
 		Button_Attack.style.cursor = 'not-allowed';
@@ -250,6 +258,51 @@ echo "<div class='imgheros' '>
 		Button_SAttack.style.cursor = 'not-allowed';
 		Button_SAttack.style.pointerEvents = "none";
 	}
+
+	function HeroAttack(){
+		Monster_HP.innerHTML = Monster_HP.innerHTML - (Hero_STR.innerHTML - Monster_DEF.innerHTML); //status
+		hpMonster__greenLife.innerHTML = Monster_HP.innerHTML; //hp
+		hpMonster__greenLife.style.width = (hpMonster__greenLife.innerHTML/fixMonsterHp)*100 + "%"; //reduce hpGreen
+	}
+
+	function MonsterAttack(){
+		Hero_HP.innerHTML = Hero_HP.innerHTML - (Monster_STR.innerHTML - Hero_DEF.innerHTML); //status
+		hpHero_greenLife.innerHTML = Hero_HP.innerHTML; //hpHero_greenLife
+		hpHero_greenLife.style.width = (hpHero_greenLife.innerHTML/fixHeroHP)*100 + "%";//reduce hpGreen
+	}
+
+	function MonsterDied(){
+		Monster_HP.innerHTML = 0; //hp Table
+		hpMonster__greenLife.innerHTML = 0; //hp Green life
+		hpMonster__greenLife.style.width = '0%'; //reduce hpGreen
+		//block all button from JOYSTICK
+		BlockAll_Button();
+		//change monster to attack mode
+		$("#monsterAttack").hide();
+		$("#monsterDeath").show();
+
+		//after kill monster
+		Button_Attack.innerHTML = "You killed " + Monster_Name.innerHTML;
+		$("#nxtMonster").fadeIn();
+	}
+
+	function HeroDied(){
+		//hero  died!
+		Hero_HP.innerHTML = 0; //hp Table
+		hpHero_greenLife.innerHTML = 0; //hp Green life
+		hpHero_greenLife.style.width = '0%'; //reduce hpGreen
+		//block all button from JOYSTICK
+		BlockAll_Button();
+		//change Hero to attack mode
+		$("#monsterAttack").hide();
+		$("#monsterDeath").show();
+
+		//after kill Hero
+		Button_Attack.innerHTML = "You Died! " + Monster_Name.innerHTML;
+		$("#gameOver").fadeIn();
+	}
+
+	//END FUNCTIONS --------------->
 
 	//start the page
 	//Fight And desapears
@@ -277,24 +330,37 @@ echo "<div class='imgheros' '>
 			//if the hero has more AGI than monster, he will attack first
 			if(Hero_AGI.innerHTML >= Monster_AGI.innerHTML){
 				//attack HERO
-				Monster_HP.innerHTML = Monster_HP.innerHTML - (Hero_STR.innerHTML - Monster_DEF.innerHTML);
+				HeroAttack();
 
 				//if the monster didnt die
-				if(Monster_HP.innerHTML >= 0){
+				if(Monster_HP.innerHTML > 0){
 					//attack MONSTER
-					Hero_HP.innerHTML = Hero_HP.innerHTML - (Monster_STR.innerHTML - Hero_DEF.innerHTML);
+					MonsterAttack();
+
+					//IF hero died!
+					if(Hero_HP.innerHTML <= 0){
+						HeroDied();
+					}
+
 				}else{ //monster died!
+					MonsterDied();
+				}
+			}else{
+				//if the Monster has more AGI than HERO, he will attack first
+				//attack MONSTER
+				MonsterAttack();
 
-					//block all button from JOYSTICK
-					BlockAll_Button();
-					//change monster to attack mode
-					$("#monsterAttack").hide();
-					$("#monsterDeath").show();
+				//if the HERO didnt die
+				if(Hero_HP.innerHTML > 0){
+					//attack HERO
+					HeroAttack();
 
-					//after kill monster
-					Button_Attack.innerHTML = "You killed " + Monster_Name.innerHTML;
-					$("#nxtMonster").fadeIn();
-					
+					//IF Monster died!
+					if(Monster_HP.innerHTML <= 0){
+						
+					}
+				}else{ //hero  died!
+					HeroDied();	
 				}
 			}
 			
