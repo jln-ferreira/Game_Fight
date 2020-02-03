@@ -119,12 +119,9 @@ nav{
 
 	$nameHero = ["Warrior", "Archer", "Wizard"]; //NAME FOR EACH FIGHTER 
 
-
-
-
-
-	//game brain -------------
-	//(change this to other page)
+	//which lvl the hero/ monster are: IT WILL CHANGE!
+	$_SESSION["LevelHero"] = 0;
+	$_SESSION["LevelMonster"] = 0;
 
 	//----------------------- HERO CHOOSED ----------------------------
 	if(isset($_GET['HeroFight'])){
@@ -133,15 +130,12 @@ nav{
 		//2 -> Mage
 
 		$_SESSION["TypeHero"] = $_GET['HeroFight'];
+	} //--------------------------------------------------------------	
+	//----------------------- CHANGE HERO AND MONSTER LEVEL ----------
+	//It happen when the player click on the 'next monster' after kill the monster
+	if(isset($_POST['nxtMonster'])){
+		$_SESSION["LevelMonster"] = $_SESSION["LevelMonster"] + 1;
 	} //--------------------------------------------------------------
-
-
-
-
-
-	//which lvl the hero/ monster are: IT WILL CHANGE!
-	$_SESSION["LevelHero"] = 0;
-	$_SESSION["LevelMonster"] = 0;
 ?>
 
 
@@ -171,7 +165,7 @@ echo "<div class='imgheros' '>
 			<div id='monster_card' >
 				<h5 class='card-title' style='width:100%;color:black;'>" . $arrMonster[$_SESSION["LevelMonster"]]->getName()  . "</h5>
 				<div class='w3-light-grey' style='width:100%;'>
-						<div id='hpMonster__greenLife' class='w3-container w3-green w3-center' style='width:100%''>". $arrMonster[$_SESSION["LevelMonster"]]->getHP() . "</div>
+						<div id='hpMonster_greenLife' class='w3-container w3-green w3-center' style='width:100%''>". $arrMonster[$_SESSION["LevelMonster"]]->getHP() . "</div>
 				</div>
 				<img id='monsterWalk' style='width:100%;' src='../image/" . $_SESSION["LevelMonster"] . "MonsterWalk.gif'> 
 				<img id='monsterAttack' style='width:100%; display:none;' src='../image/" . $_SESSION["LevelMonster"] . "MonsterAttack.gif'>
@@ -195,9 +189,12 @@ echo "<div class='imgheros' '>
 				<button id='Run' type='button' class='btn-home' style='width:122px;'>Run</button>
 				<button id='Special_attack' type='button' class='btn-home'>Special Attack</button>
 			</div>
-
-			<button id='nxtMonster' style='display:none;' type='button' class='btn btn-success'>NEXT MONSTER</button>
-			<button id='gameOver' style='display:none;' type='button' class='btn btn-danger'>GAME OVER</button>
+			
+			<form method='post'>
+    			<input type='submit' name='nxtMonster' id='nxtMonster' style='display:none;' class='btn btn-success' value='NEXT MONSTER' />
+    			<input type='submit' name='gameOver' id='gameOver' style='display:none;' class='btn btn-danger' value='GAME OVER' />
+			</form>
+			
 			
 			<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:right;width:20%;'>
 				<div class='card-body' style='padding-bottom: 2px'>
@@ -213,7 +210,6 @@ echo "<div class='imgheros' '>
 
 </div><!----------- FINISH MAIN Container ------------->
 
-
 <script>
 	//joystick buttons
 	var Button_Attack = document.getElementById("Attack");
@@ -223,10 +219,10 @@ echo "<div class='imgheros' '>
 
 	//HP FIXED
 	var fixHeroHP = document.getElementById("hpHero_greenLife").innerHTML;
-	var fixMonsterHp = document.getElementById("hpMonster__greenLife").innerHTML;
+	var fixMonsterHp = document.getElementById("hpMonster_greenLife").innerHTML;
 	//HP CHAR
 	var hpHero_greenLife = document.getElementById("hpHero_greenLife");
-	var hpMonster__greenLife = document.getElementById("hpMonster__greenLife");
+	var hpMonster_greenLife = document.getElementById("hpMonster_greenLife");
 
 	//status Hero------>
 	var Hero_Name = document.getElementById("status_hero_Name");
@@ -261,8 +257,8 @@ echo "<div class='imgheros' '>
 
 	function HeroAttack(){
 		Monster_HP.innerHTML = Monster_HP.innerHTML - (Hero_STR.innerHTML - Monster_DEF.innerHTML); //status
-		hpMonster__greenLife.innerHTML = Monster_HP.innerHTML; //hp
-		hpMonster__greenLife.style.width = (hpMonster__greenLife.innerHTML/fixMonsterHp)*100 + "%"; //reduce hpGreen
+		hpMonster_greenLife.innerHTML = Monster_HP.innerHTML; //hp
+		hpMonster_greenLife.style.width = (hpMonster_greenLife.innerHTML/fixMonsterHp)*100 + "%"; //reduce hpGreen
 	}
 
 	function MonsterAttack(){
@@ -273,8 +269,8 @@ echo "<div class='imgheros' '>
 
 	function MonsterDied(){
 		Monster_HP.innerHTML = 0; //hp Table
-		hpMonster__greenLife.innerHTML = 0; //hp Green life
-		hpMonster__greenLife.style.width = '0%'; //reduce hpGreen
+		hpMonster_greenLife.innerHTML = 0; //hp Green life
+		hpMonster_greenLife.style.width = '0%'; //reduce hpGreen
 		//block all button from JOYSTICK
 		BlockAll_Button();
 		//change monster to attack mode
@@ -363,9 +359,6 @@ echo "<div class='imgheros' '>
 					HeroDied();	
 				}
 			}
-			
-
-
 		});
 	});
 </script>

@@ -19,16 +19,16 @@ class Char{
         return $this->HP;
     } 
     function getSTR() {
-        return $this->height;
+        return $this->STR;
     } 
     function getDEF() {
-        return $this->width;
+        return $this->DEF;
     }
     function getAGI() {
-        return $this->length;
+        return $this->AGI;
     } 
     function getEXP() {
-        return $this->length;
+        return $this->EXP;
     } 
 
     //setters CHAR -->
