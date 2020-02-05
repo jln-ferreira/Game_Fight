@@ -135,6 +135,14 @@ nav{
 	//It happen when the player click on the 'next monster' after kill the monster
 	if(isset($_POST['nxtMonster'])){
 		$_SESSION["LevelMonster"] = $_SESSION["LevelMonster"] + 1;
+
+		//save status of the hero:
+		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setHP($_COOKIE["CookieHP"]);
+		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setSTR($_COOKIE["CookieSTR"]);
+		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setDEF($_COOKIE["CookieDEF"]);
+		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setAGI($_COOKIE["CookieAGI"]);
+		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setEXP($_COOKIE["CookieMANA"]);
+		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setMANA($_COOKIE["CookieEXP"]);
 	} //--------------------------------------------------------------
 ?>
 
@@ -307,6 +315,16 @@ echo "<div class='imgheros' '>
 		if (parts.length == 2) return parts.pop().split(";").shift();
 	}
 
+	function SaveStatusHero(){
+		//save current status of the HERO
+		createCookie("CookieHP",Hero_HP.innerHTML);
+		createCookie("CookieSTR",Hero_STR.innerHTML);
+		createCookie("CookieDEF",Hero_DEF.innerHTML);
+		createCookie("CookieAGI",Hero_AGI.innerHTML);
+		createCookie("CookieMANA",Hero_MANA.innerHTML);
+		createCookie("CookieEXP",Hero_EXP.innerHTML);
+	}
+	
 	//END FUNCTIONS --------------->
 
 	//start the page
@@ -349,6 +367,10 @@ echo "<div class='imgheros' '>
 
 				}else{ //monster died!
 					MonsterDied();
+
+					//save current status of the HERO
+					SaveStatusHero();
+					console.log(getCookie("CookieHP"));
 				}
 			}else{
 				//if the Monster has more AGI than HERO, he will attack first
@@ -363,6 +385,7 @@ echo "<div class='imgheros' '>
 					//IF Monster died!
 					if(Monster_HP.innerHTML <= 0){
 						
+						MonsterDied();
 					}
 				}else{ //hero  died!
 					HeroDied();	
@@ -371,9 +394,13 @@ echo "<div class='imgheros' '>
 		});
 	});
 
+	//example
+	// createCookie("tste",20);
+	// console.log(getCookie("tste"));
 
 
 
 
+</script>	
 
-</script>
+
