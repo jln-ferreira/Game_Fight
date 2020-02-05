@@ -1,3 +1,4 @@
+
 <?php
 
 //-----------Character information-------------
@@ -165,4 +166,4 @@ class Monster extends Char{
     }   
 }
 
-?>
+

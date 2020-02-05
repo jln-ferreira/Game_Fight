@@ -161,7 +161,6 @@ echo "<div class='imgheros' '>
 				<img id='heroWalk' style='width:100%;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Walk.gif'> 
 				<img id='heroAttack' style='width:100%; display:none;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Attack.gif'> 
 			</div>
-
 			<div id='monster_card' >
 				<h5 class='card-title' style='width:100%;color:black;'>" . $arrMonster[$_SESSION["LevelMonster"]]->getName()  . "</h5>
 				<div class='w3-light-grey' style='width:100%;'>
@@ -173,8 +172,6 @@ echo "<div class='imgheros' '>
 			</div>
 		</div>
 	</div>
-
-
 	<div id='BattleRow1' class='row' style='display: none;margin-left:10px;margin-right:10px;margin-top:10px;'>	
 		<div class='informations' style='display:block;width:100%;margin:0 auto;'>
 			<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:left;width:20%;'>
@@ -182,7 +179,6 @@ echo "<div class='imgheros' '>
 					<p class='card-text'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->status() . "</p>
 				</div>
 			</div>
-
 			<div id='control' style='display:inline-block;vertical-align:top;width:25%; margin:0 auto;'>	
 				<button id='Attack' type='button' class='btn-home' >Attack</button><br>
 				<button id='Bag' type='button' class='btn-home' style='width:122px;'>Bag</button>
@@ -298,6 +294,19 @@ echo "<div class='imgheros' '>
 		$("#gameOver").fadeIn();
 	}
 
+	//COOKIES
+	//setCOOKIES
+	function createCookie(cookieName,cookieValue){
+      document.cookie = cookieName + "=" + cookieValue;
+	}
+
+	//getCOOKIES
+	function getCookie(name) {
+		var value = "; " + document.cookie;
+		var parts = value.split("; " + name + "=");
+		if (parts.length == 2) return parts.pop().split(";").shift();
+	}
+
 	//END FUNCTIONS --------------->
 
 	//start the page
@@ -361,4 +370,10 @@ echo "<div class='imgheros' '>
 			}
 		});
 	});
+
+
+
+
+
+
 </script>
