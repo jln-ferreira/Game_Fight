@@ -152,24 +152,29 @@ class Monster extends Char{
     //methods Monster -->
     function status(){
         return "<table class='table table-sm'>
-                  <tr>
-                    <th id='status_monster_Name' colspan='2'>" . $this->Name . "</th>
-                  </tr>
-                  <tr>
-                    <td>HP</td>
-                    <td id='status_monster_HP'>" . $this->HP . "</td>
-                  </tr>
                     <tr>
-                    <td>STR</td>
-                    <td id='status_monster_STR'>" . $this->STR . "</td>
-                  </tr>
+                        <th id='status_monster_Name' colspan='2'>" . $this->Name . "</th>
+                    </tr>
                     <tr>
-                    <td>DEF</td>
-                    <td id='status_monster_DEF'>" . $this->DEF . "</td>
-                  </tr>
+                        <td>HP</td>
+                        <td id='status_monster_HP'>" . $this->HP . "</td>
+                    </tr>
                     <tr>
-                    <td>AGI</td>
-                    <td id='status_monster_AGI'>" . $this->AGI . "</td>
+                        <td>STR</td>
+                        <td id='status_monster_STR'>" . $this->STR . "</td>
+                    </tr>
+                    <tr>
+                        <td>DEF</td>
+                        <td id='status_monster_DEF'>" . $this->DEF . "</td>
+                    </tr>
+                    <tr>
+                        <td>AGI</td>
+                        <td id='status_monster_AGI'>" . $this->AGI . "</td>
+                    </tr>
+                    <tr style='display: none;'>
+                        <td>EXP</td>
+                        <td id='status_monster_EXP'>" . $this->EXP ."</td>
+                    </tr>
                 </table>";
     }   
 }

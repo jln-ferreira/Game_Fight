@@ -7,105 +7,105 @@
 <!------------------------------------------------------------------------->
 <style type="text/css">
 
-#hero_card {
-  position: absolute;
-  bottom: 0;
-  left: 334px;
-}
+	#hero_card {
+	  position: absolute;
+	  bottom: 0;
+	  left: 334px;
+	}
 
-#hero_card{
-	background-color: #fff;
-}
+	#hero_card{
+		background-color: #fff;
+	}
 
-#monster_card {
-  position: absolute;
-  right: 334px;
-  bottom: 0;
-}
+	#monster_card {
+	  position: absolute;
+	  right: 334px;
+	  bottom: 0;
+	}
 
-#monster_card{
-	background-color: #fff;
-}
+	#monster_card{
+		background-color: #fff;
+	}
 
-#BattleRow {
-  position: relative;
-  text-align: center;
-  color: white;
-}
+	#BattleRow {
+	  position: relative;
+	  text-align: center;
+	  color: white;
+	}
 
-.btn-home{
-  margin: 10px auto;
-  width: 250px;
-  letter-spacing: 2px;
-  border-radius: 8px;
-  font-family: 'Skranji', cursive;
-  color: #ffc000;
-  font-size: 18px;
-  font-weight: 400;
-  text-shadow: 0 1px 3px #000;
-  text-align: center;
-  padding: 10px 0;
-  background: radial-gradient(circle, #8b0000, #8b0000);
-  border-top: 4px ridge #ffb000;
-  border-left: 4px groove #ffb000;
-  border-right: 4px ridge #ffb000;
-  border-bottom: 4px groove #ffb000;
-  box-shadow: inset 0px 0px 5px 3px rgba(1,1,1,0.3);
-}
+	.btn-home{
+	  margin: 10px auto;
+	  width: 250px;
+	  letter-spacing: 2px;
+	  border-radius: 8px;
+	  font-family: 'Skranji', cursive;
+	  color: #ffc000;
+	  font-size: 18px;
+	  font-weight: 400;
+	  text-shadow: 0 1px 3px #000;
+	  text-align: center;
+	  padding: 10px 0;
+	  background: radial-gradient(circle, #8b0000, #8b0000);
+	  border-top: 4px ridge #ffb000;
+	  border-left: 4px groove #ffb000;
+	  border-right: 4px ridge #ffb000;
+	  border-bottom: 4px groove #ffb000;
+	  box-shadow: inset 0px 0px 5px 3px rgba(1,1,1,0.3);
+	}
 
-.btn-home:hover{
-  background: radial-gradient(circle, #e52b2b, #8b0000);
-  box-shadow: 0px 0 5px 5px rgba(255,255,255,0.2)
-}
+	.btn-home:hover{
+	  background: radial-gradient(circle, #e52b2b, #8b0000);
+	  box-shadow: 0px 0 5px 5px rgba(255,255,255,0.2)
+	}
 
-.btn-home:active{
-  background: radial-gradient(circle, #ec6a6a, #e52b2b);
-  box-shadow: 0px 0 5px 5px rgba(255,255,255,0.2)
-}
+	.btn-home:active{
+	  background: radial-gradient(circle, #ec6a6a, #e52b2b);
+	  box-shadow: 0px 0 5px 5px rgba(255,255,255,0.2)
+	}
 
-@media only screen and (max-width: 1180px) {
-#hero_card{
-	left: 180px;
-}
+	@media only screen and (max-width: 1180px) {
+	#hero_card{
+		left: 180px;
+	}
 
-#monster_card {
-  right: 180px;
-}
-@media only screen and (max-width: 876px) {
-#hero_card{
-	left: 65px;
-}
+	#monster_card {
+	  right: 180px;
+	}
+	@media only screen and (max-width: 876px) {
+	#hero_card{
+		left: 65px;
+	}
 
-#monster_card {
-  right: 65px;
-}
-@media only screen and (max-width: 876px) {
-#hero_card{
-  width: 200px;
-}
+	#monster_card {
+	  right: 65px;
+	}
+	@media only screen and (max-width: 876px) {
+	#hero_card{
+	  width: 200px;
+	}
 
-#monster_card {
-  width: 200px;
-}
-@media only screen and (max-width: 532px) {
-#hero_card{
-  width: 160px;
-}
+	#monster_card {
+	  width: 200px;
+	}
+	@media only screen and (max-width: 532px) {
+	#hero_card{
+	  width: 160px;
+	}
 
-#monster_card {
-  width: 160px;
-}
-@media only screen and (max-width: 450px) {
-#hero_card{
-  left: 0;
-}
+	#monster_card {
+	  width: 160px;
+	}
+	@media only screen and (max-width: 450px) {
+	#hero_card{
+	  left: 0;
+	}
 
-#monster_card {
-  right: 0;
-}
-nav{
-	z-index: 130;
-}
+	#monster_card {
+	  right: 0;
+	}
+	nav{
+		z-index: 130;
+	}
 }
 </style>
 
@@ -119,9 +119,10 @@ nav{
 
 	$nameHero = ["Warrior", "Archer", "Wizard"]; //NAME FOR EACH FIGHTER 
 
-	//which lvl the hero/ monster are: IT WILL CHANGE!
-	$_SESSION["LevelHero"] = 0;
-	
+	//change level of the Hero
+	if(!isset($_SESSION["LevelHero"])){
+		$_SESSION["LevelHero"] = 0;
+	}
 	//change level of the monster
 	if(!isset($_SESSION["LevelMonster"])){
 		$_SESSION["LevelMonster"] = 0;
@@ -145,14 +146,21 @@ nav{
 		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setSTR($_COOKIE["CookieSTR"]);
 		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setDEF($_COOKIE["CookieDEF"]);
 		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setAGI($_COOKIE["CookieAGI"]);
-		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setEXP($_COOKIE["CookieMANA"]);
-		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setMANA($_COOKIE["CookieEXP"]);
+		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setMANA($_COOKIE["CookieMANA"]);
+		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setEXP($_COOKIE["CookieEXP"]);
+
+		//change HERO (LEVEL UP!)
+		if($arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getEXP() == 0){
+			$_SESSION["LevelHero"] = $_SESSION["LevelHero"] + 1;
+		}
+
 	} //--------------------------------------------------------------
 
 	//----------------------- GAME OVER  -----------------------------
 	if(isset($_POST['gameOver'])){
-		//Reset level of monster (restart game)
+		//Reset level of monster and hero (restart game)
 		$_SESSION["LevelMonster"] = 0;
+		$_SESSION["LevelHero"] = 0;
 
 		//Redirect browser to first page:
 		header("Location: http://localhost/Game_Fight/Code_Game/GameBattle.php");
@@ -173,9 +181,10 @@ nav{
 <?php 
 		
 
-echo "<div class='imgheros' '>
+echo "<div class='imgheros'>
 			<div id='hero_card' >
 				<h5 class='card-title' style='width:100%;color:black'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getName()  . "</h5>
+				<h5>Level up!</h5>
 				<div class='w3-light-grey' style='width:100%;'>
 						<div id='hpHero_greenLife' class='w3-container w3-green w3-center' style='width:100%;'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getHP() . "</div>
 				</div>
@@ -257,6 +266,8 @@ echo "<div class='imgheros' '>
 	var Monster_STR = document.getElementById("status_monster_STR");
 	var Monster_DEF = document.getElementById("status_monster_DEF");
 	var Monster_AGI = document.getElementById("status_monster_AGI");
+	var Monster_EXP = document.getElementById("status_monster_EXP");
+	
 
 
 
@@ -298,6 +309,12 @@ echo "<div class='imgheros' '>
 		//after kill monster
 		Button_Attack.innerHTML = "You killed " + Monster_Name.innerHTML;
 		$("#nxtMonster").fadeIn();
+
+		//ADD EXP for the HERO When Kill Monster
+		Hero_EXP.innerHTML = Hero_EXP.innerHTML - Monster_EXP.innerHTML;
+		if(Hero_EXP.innerHTML <= 0){
+			Hero_EXP.innerHTML = 0;
+		}
 	}
 
 	function HeroDied(){
@@ -384,7 +401,6 @@ echo "<div class='imgheros' '>
 
 					//save current status of the HERO
 					SaveStatusHero();
-					console.log(getCookie("CookieHP"));
 				}
 			}else{
 				//if the Monster has more AGI than HERO, he will attack first
@@ -405,7 +421,26 @@ echo "<div class='imgheros' '>
 					HeroDied();	
 				}
 			}
-		});
+		});//----------------------------FINISH ATTACK------------------------------
+		//----------------------------RUN FOR OUR LIFE!-----------------------------
+		// Gonna run only if the Hero is faster than monster (AGI)
+		$("#Run").click(function(){
+			if(Hero_AGI.innerHTML > Monster_AGI.innerHTML){
+				BlockAll_Button();
+
+				Button_Attack.innerHTML = "RUN!";
+				$("#nxtMonster").fadeIn();
+			}
+			else MonsterAttack();
+
+			//IF hero died!
+			if(Hero_HP.innerHTML <= 0){
+				HeroDied();
+			}
+
+
+		});//----------------------------FINISH RUN---------------------------------
+
 	});
 
 
