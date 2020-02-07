@@ -121,7 +121,11 @@ nav{
 
 	//which lvl the hero/ monster are: IT WILL CHANGE!
 	$_SESSION["LevelHero"] = 0;
-	$_SESSION["LevelMonster"] = 0;
+	
+	//change level of the monster
+	if(!isset($_SESSION["LevelMonster"])){
+		$_SESSION["LevelMonster"] = 0;
+	}
 
 	//----------------------- HERO CHOOSED ----------------------------
 	if(isset($_GET['HeroFight'])){
@@ -136,7 +140,7 @@ nav{
 	if(isset($_POST['nxtMonster'])){
 		$_SESSION["LevelMonster"] = $_SESSION["LevelMonster"] + 1;
 
-		//save status of the hero:
+		//save status of the hero: SETTERS of OOP
 		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setHP($_COOKIE["CookieHP"]);
 		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setSTR($_COOKIE["CookieSTR"]);
 		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setDEF($_COOKIE["CookieDEF"]);
@@ -144,6 +148,15 @@ nav{
 		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setEXP($_COOKIE["CookieMANA"]);
 		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setMANA($_COOKIE["CookieEXP"]);
 	} //--------------------------------------------------------------
+
+	//----------------------- GAME OVER  -----------------------------
+	if(isset($_POST['gameOver'])){
+		//Reset level of monster (restart game)
+		$_SESSION["LevelMonster"] = 0;
+
+		//Redirect browser to first page:
+		header("Location: http://localhost/Game_Fight/Code_Game/GameBattle.php");
+	}
 ?>
 
 
@@ -166,8 +179,9 @@ echo "<div class='imgheros' '>
 				<div class='w3-light-grey' style='width:100%;'>
 						<div id='hpHero_greenLife' class='w3-container w3-green w3-center' style='width:100%;'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getHP() . "</div>
 				</div>
-				<img id='heroWalk' style='width:100%;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Walk.gif'> 
+				<img id='heroWalk' style='width:100%;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["TypeHero"]] . "Walk.gif'> 
 				<img id='heroAttack' style='width:100%; display:none;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Attack.gif'> 
+				<img id='heroDeath' style='width:100%; display:none;' src='../image/" . $_SESSION["LevelHero"] . $nameHero[$_SESSION["LevelHero"]] . "Death.gif'> 
 			</div>
 			<div id='monster_card' >
 				<h5 class='card-title' style='width:100%;color:black;'>" . $arrMonster[$_SESSION["LevelMonster"]]->getName()  . "</h5>
@@ -294,8 +308,8 @@ echo "<div class='imgheros' '>
 		//block all button from JOYSTICK
 		BlockAll_Button();
 		//change Hero to attack mode
-		$("#monsterAttack").hide();
-		$("#monsterDeath").show();
+		$("#heroAttack").hide();
+		$("#heroDeath").show();
 
 		//after kill Hero
 		Button_Attack.innerHTML = "You Died! " + Monster_Name.innerHTML;
@@ -394,13 +408,12 @@ echo "<div class='imgheros' '>
 		});
 	});
 
-	//example
+
+
+	//example of cookies
 	// createCookie("tste",20);
 	// console.log(getCookie("tste"));
-
-
-
-
 </script>	
+
 
 
