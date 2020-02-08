@@ -204,36 +204,37 @@ echo "<div class='imgheros'>
 		</div>
 	</div>
 	<div id='BattleRow1' class='row' style='display: none;margin-left:10px;margin-right:10px;margin-top:10px;'>	
-		<div class='informations' style='display:block;width:100%;margin:0 auto;'>
-			<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:left;width:20%;'>
-				<div class='card-body' style='padding-bottom: 2px'>
-					<p class='card-text'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->status() . "</p>
-				</div>
+		<div class='card col-sm' id='heroCard'>
+			<div class='card-body' style='padding-bottom: 2px'>
+				<p class='card-text'>" . $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->status() . "</p>
 			</div>
-			<div id='control' style='display:inline-block;vertical-align:top;width:25%; margin:0 auto;'>	
-				<button id='Attack' type='button' class='btn-home' >Attack</button><br>
-				<button id='Bag' type='button' class='btn-home' style='width:122px;'>Bag</button>
-				<button id='Run' type='button' class='btn-home' style='width:122px;'>Run</button>
-				<button id='Special_attack' type='button' class='btn-home'>Special Attack</button>
-			</div>
-			
-			<form method='post'>
-    			<input type='submit' name='nxtMonster' id='nxtMonster' style='display:none;' class='btn btn-success' value='NEXT MONSTER' />
-    			<input type='submit' name='gameOver' id='gameOver' style='display:none;' class='btn btn-danger' value='GAME OVER' />
-			</form>
-			
-			
-			<div class='card' id='monsterCard' style='display:inline-block;vertical-align:top;float:right;width:20%;'>
-				<div class='card-body' style='padding-bottom: 2px'>
-					<p class='card-text'>" . $arrMonster[$_SESSION["LevelMonster"]]->status() . "</p>
-				</div>
+		</div>
+		<div id='control' class='col-sm'>	
+			<button id='Attack' type='button' class='btn-home' >Attack</button><br>
+			<button id='Bag' type='button' class='btn-home' style='width:122px;'>Bag</button>
+			<button id='Run' type='button' class='btn-home' style='width:122px;'>Run</button>
+			<button id='Special_attack' type='button' class='btn-home'>Special Attack</button>
+		</div>
+		
+		<form method='post'>
+			<input type='submit' name='nxtMonster' id='nxtMonster' style='display:none;' class='btn btn-success' value='NEXT MONSTER' />
+			<input type='submit' name='gameOver' id='gameOver' style='display:none;' class='btn btn-danger' value='GAME OVER' />
+		</form>
+		
+		
+		<div class='card col-sm' id='monsterCard'>
+			<div class='card-body' style='padding-bottom: 2px'>
+				<p class='card-text'>" . $arrMonster[$_SESSION["LevelMonster"]]->status() . "</p>
 			</div>
 		</div>";
 ?>
-	</div>  <!-- End Second Container JOYSTICK -->
+	</div>  <!-- End Second ROW JOYSTICK -->
 
-	
-	
+	<!-- ALL THE BAG  -->
+	<div id='BagRow1' class='row'>
+		<div class="col-md-6 offset-md-3">.col-md-6 .offset-md-3</div>
+	</div>
+
 
 </div><!----------- FINISH MAIN Container ------------->
 
@@ -421,7 +422,7 @@ echo "<div class='imgheros'>
 
 	//PLAY WITH JOYSTICK!
 	$(document).ready(function(){
-		//----------------------------CLICK ATTACK-----------------------------
+		//----------------------------CLICK ATTACK----------------------------------
 		$("#Attack").click(function(){
 
 			//Normal rotation Attack monster and attack Hero (Depends who is faster > AGI)
@@ -443,11 +444,8 @@ echo "<div class='imgheros'>
 			if(Hero_HP.innerHTML <= 0){
 				HeroDied();
 			}
-
-
 		});//----------------------------FINISH RUN---------------------------------
-		//----------------------------SPECIAL ATTACK!-----------------------------
-		// Gonna run only if the Hero is faster than monster (AGI)
+		//----------------------------SPECIAL ATTACK!-------------------------------
 		$("#Special_attack").click(function(){
 
 			//hero can just use special attack when has mana = 1
@@ -466,8 +464,27 @@ echo "<div class='imgheros'>
 					HeroDied();
 				}
 			}
-			
-		});//----------------------------FINISH SPECIAL ATTACK---------------------------------
+		});//----------------------------FINISH SPECIAL ATTACK----------------------
+		//----------------------------USING BAG-------------------------------------
+		$("#Special_attack").click(function(){
+
+			//hero can just use special attack when has mana = 1
+			if(Hero_MANA.innerHTML == 1){
+				//Normal rotation Attack monster and attack Hero (Depends who is faster > AGI)
+				HeroAndMonsterAttackRotation(2);
+
+				//reduce MANA = 0
+				Hero_MANA.innerHTML = Hero_MANA.innerHTML -1;
+			}
+			else{
+				//attack MONSTER
+				MonsterAttack();
+				//IF hero died!
+				if(Hero_HP.innerHTML <= 0){
+					HeroDied();
+				}
+			}
+		});//----------------------------FINISH SPECIAL ATTACK----------------------
 	});
 
 
