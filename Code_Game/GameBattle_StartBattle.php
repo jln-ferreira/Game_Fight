@@ -284,8 +284,8 @@ echo "<div class='imgheros'>
 		Button_SAttack.style.pointerEvents = "none";
 	}
 
-	function HeroAttack(){
-		Monster_HP.innerHTML = Monster_HP.innerHTML - (Hero_STR.innerHTML - Monster_DEF.innerHTML); //status
+	function HeroAttack($specialAttack){
+		Monster_HP.innerHTML = Monster_HP.innerHTML - ((Hero_STR.innerHTML * $specialAttack) - Monster_DEF.innerHTML); //status
 		hpMonster_greenLife.innerHTML = Monster_HP.innerHTML; //hp
 		hpMonster_greenLife.style.width = (hpMonster_greenLife.innerHTML/fixMonsterHp)*100 + "%"; //reduce hpGreen
 	}
@@ -333,6 +333,58 @@ echo "<div class='imgheros'>
 		$("#gameOver").fadeIn();
 	}
 
+	function HeroAndMonsterAttackRotation($STR_AttackHero){
+		//change hero to attack mode
+		$("#heroWalk").hide();
+		$("#heroAttack").show();
+
+		//change monster to attack mode
+		$("#monsterWalk").hide();
+		$("#monsterAttack").show();
+
+		//compair AGI;
+		//if the hero has more AGI than monster, he will attack first
+		if(Hero_AGI.innerHTML >= Monster_AGI.innerHTML){
+			//attack HERO
+			HeroAttack($STR_AttackHero); //(x) multiple attack
+
+			//if the monster didnt die
+			if(Monster_HP.innerHTML > 0){
+				//attack MONSTER
+				MonsterAttack();
+
+				//IF hero died!
+				if(Hero_HP.innerHTML <= 0){
+					HeroDied();
+				}
+
+			}else{ //monster died!
+				MonsterDied();
+
+				//save current status of the HERO
+				SaveStatusHero();
+			}
+		}else{
+			//if the Monster has more AGI than HERO, he will attack first
+			//attack MONSTER
+			MonsterAttack();
+
+			//if the HERO didnt die
+			if(Hero_HP.innerHTML > 0){
+				//attack HERO
+				HeroAttack($STR_AttackHero); //(x) multiple attack
+
+				//IF Monster died!
+				if(Monster_HP.innerHTML <= 0){
+					
+					MonsterDied();
+				}
+			}else{ //hero  died!
+				HeroDied();	
+			}
+		}
+	}
+
 	//COOKIES
 	//setCOOKIES
 	function createCookie(cookieName,cookieValue){
@@ -372,55 +424,9 @@ echo "<div class='imgheros'>
 		//----------------------------CLICK ATTACK-----------------------------
 		$("#Attack").click(function(){
 
-			//change hero to attack mode
-			$("#heroWalk").hide();
-			$("#heroAttack").show();
+			//Normal rotation Attack monster and attack Hero (Depends who is faster > AGI)
+			HeroAndMonsterAttackRotation(1);
 
-			//change monster to attack mode
-			$("#monsterWalk").hide();
-			$("#monsterAttack").show();
-
-			//compair AGI;
-			//if the hero has more AGI than monster, he will attack first
-			if(Hero_AGI.innerHTML >= Monster_AGI.innerHTML){
-				//attack HERO
-				HeroAttack();
-
-				//if the monster didnt die
-				if(Monster_HP.innerHTML > 0){
-					//attack MONSTER
-					MonsterAttack();
-
-					//IF hero died!
-					if(Hero_HP.innerHTML <= 0){
-						HeroDied();
-					}
-
-				}else{ //monster died!
-					MonsterDied();
-
-					//save current status of the HERO
-					SaveStatusHero();
-				}
-			}else{
-				//if the Monster has more AGI than HERO, he will attack first
-				//attack MONSTER
-				MonsterAttack();
-
-				//if the HERO didnt die
-				if(Hero_HP.innerHTML > 0){
-					//attack HERO
-					HeroAttack();
-
-					//IF Monster died!
-					if(Monster_HP.innerHTML <= 0){
-						
-						MonsterDied();
-					}
-				}else{ //hero  died!
-					HeroDied();	
-				}
-			}
 		});//----------------------------FINISH ATTACK------------------------------
 		//----------------------------RUN FOR OUR LIFE!-----------------------------
 		// Gonna run only if the Hero is faster than monster (AGI)
@@ -440,7 +446,28 @@ echo "<div class='imgheros'>
 
 
 		});//----------------------------FINISH RUN---------------------------------
+		//----------------------------SPECIAL ATTACK!-----------------------------
+		// Gonna run only if the Hero is faster than monster (AGI)
+		$("#Special_attack").click(function(){
 
+			//hero can just use special attack when has mana = 1
+			if(Hero_MANA.innerHTML == 1){
+				//Normal rotation Attack monster and attack Hero (Depends who is faster > AGI)
+				HeroAndMonsterAttackRotation(2);
+
+				//reduce MANA = 0
+				Hero_MANA.innerHTML = Hero_MANA.innerHTML -1;
+			}
+			else{
+				//attack MONSTER
+				MonsterAttack();
+				//IF hero died!
+				if(Hero_HP.innerHTML <= 0){
+					HeroDied();
+				}
+			}
+			
+		});//----------------------------FINISH SPECIAL ATTACK---------------------------------
 	});
 
 
