@@ -53,11 +53,18 @@ class Item{
     }
 
     //methods Item -->
-    function status(){
-        echo "The $this->Name : <br>
-            HP: $this->HP <br>
-            STR: $this->STR <br>
-            DEF: $this->DEF <br>";
+    // i if quantity of itens Hero has
+    function status($i){
+
+        //Creating BAG:
+        //<table id='BagHTML' class='table table-sm'></table>
+
+        echo"<tr>
+                <td>HP</td>
+                <td id='Name_Item_" . $i . "'>" . $this->Name . "</td>
+                <td id='Status_Item_" . $i . "'> HP(" . $this->HP . ")" . " STR(" . $this->STR . ")" . "DEF(" . $this->DEF . ")</td>
+                <td id='Use_Item_" . $i . "><button type='button' class='btn btn-success'>Use</button></td>
+            </tr>";
     }   
 }
 ?>

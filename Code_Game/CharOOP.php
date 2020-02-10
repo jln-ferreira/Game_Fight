@@ -138,13 +138,6 @@ class Hero extends Char{
              </table>";
     }    
 }
-
-        // createCookie("CookieHP",Hero_HP.innerHTML);
-        // createCookie("CookieSTR",Hero_STR.innerHTML);
-        // createCookie("CookieDEF",Hero_DEF.innerHTML);
-        // createCookie("CookieAGI",Hero_AGI.innerHTML);
-        // createCookie("CookieMANA",Hero_MANA.innerHTML);
-        // createCookie("CookieEXP",Hero_EXP.innerHTML);
     
 
 // --------------- Monster information ---------------
@@ -178,5 +171,3 @@ class Monster extends Char{
                 </table>";
     }   
 }
-
-

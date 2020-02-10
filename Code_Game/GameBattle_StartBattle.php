@@ -154,6 +154,11 @@
 			$_SESSION["LevelHero"] = $_SESSION["LevelHero"] + 1;
 		}
 
+		//when KILL a monster, Hero receive an item to use:
+		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setMyBag($arrItem[$_SESSION["LevelMonster"]-1]);
+		
+		echo $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getMyBag([0])->getName();
+
 	} //--------------------------------------------------------------
 
 	//----------------------- GAME OVER  -----------------------------
@@ -232,7 +237,18 @@ echo "<div class='imgheros'>
 
 	<!-- ALL THE BAG  -->
 	<div id='BagRow1' class='row'>
-		<div class="col-md-6 offset-md-3">.col-md-6 .offset-md-3</div>
+		<div class="col-md-6 offset-md-3">
+			<table class='table table-sm'>
+				<tr>
+	                <th colspan='3'> My Bag </th>
+	            </tr>
+				<?php 
+					for ($i=0; $i < $_SESSION["LevelMonster"]; $i++) { 
+						echo $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getMyBag([$i])->status($i);
+					}
+				 ?>
+			</table>
+		</div>
 	</div>
 
 
