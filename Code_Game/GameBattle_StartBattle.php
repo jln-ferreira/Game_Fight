@@ -155,9 +155,8 @@
 		}
 
 		//when KILL a monster, Hero receive an item to use:
-		$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setMyBag($arrItem[$_SESSION["LevelMonster"]-1]);
-		
-		echo $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getMyBag([0])->getName();
+		//$arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->setMyBag($arrItem[$_SESSION["LevelMonster"]-1]);
+		//echo $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getMyBag([0])->getName();
 
 	} //--------------------------------------------------------------
 
@@ -236,17 +235,17 @@ echo "<div class='imgheros'>
 	</div>  <!-- End Second ROW JOYSTICK -->
 
 	<!-- ALL THE BAG  -->
-	<div id='BagRow1' class='row'>
+	<div id='BagRow1' class='row' style="display: none">
 		<div class="col-md-6 offset-md-3">
 			<table class='table table-sm'>
 				<tr>
 	                <th colspan='3'> My Bag </th>
 	            </tr>
-				<?php 
+				<?php //show all itens the hero has:
 					for ($i=0; $i < $_SESSION["LevelMonster"]; $i++) { 
-						echo $arrHEROS[$_SESSION["TypeHero"]][$_SESSION["LevelHero"]]->getMyBag([$i])->status($i);
+						$arrItem[$i]->status($i);
 					}
-				 ?>
+				?>
 			</table>
 		</div>
 	</div>
@@ -482,25 +481,10 @@ echo "<div class='imgheros'>
 			}
 		});//----------------------------FINISH SPECIAL ATTACK----------------------
 		//----------------------------USING BAG-------------------------------------
-		$("#Special_attack").click(function(){
-
-			//hero can just use special attack when has mana = 1
-			if(Hero_MANA.innerHTML == 1){
-				//Normal rotation Attack monster and attack Hero (Depends who is faster > AGI)
-				HeroAndMonsterAttackRotation(2);
-
-				//reduce MANA = 0
-				Hero_MANA.innerHTML = Hero_MANA.innerHTML -1;
-			}
-			else{
-				//attack MONSTER
-				MonsterAttack();
-				//IF hero died!
-				if(Hero_HP.innerHTML <= 0){
-					HeroDied();
-				}
-			}
-		});//----------------------------FINISH SPECIAL ATTACK----------------------
+		$("#Bag").click(function(){
+			//open and close bag:
+			$("#BagRow1").toggle();	
+		});//----------------------------FINISH BAG----------------------
 	});
 
 
