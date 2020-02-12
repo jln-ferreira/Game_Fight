@@ -239,7 +239,10 @@ echo "<div class='imgheros'>
 		<div class="col-md-6 offset-md-3">
 			<table class='table table-sm'>
 				<tr>
-	                <th colspan='3'> My Bag </th>
+	                <th> My Bag </th>
+	                <th> HP </th>
+	                <th> STR </th>
+	                <th> DEF </th>
 	            </tr>
 				<?php //show all itens the hero has:
 					for ($i=0; $i < $_SESSION["LevelMonster"]; $i++) { 
@@ -284,6 +287,7 @@ echo "<div class='imgheros'>
 	var Monster_AGI = document.getElementById("status_monster_AGI");
 	var Monster_EXP = document.getElementById("status_monster_EXP");
 	
+	//status itens -------->
 
 
 
@@ -484,7 +488,14 @@ echo "<div class='imgheros'>
 		$("#Bag").click(function(){
 			//open and close bag:
 			$("#BagRow1").toggle();	
-		});//----------------------------FINISH BAG----------------------
+		});//----------------------------FINISH BAG---------------------------------
+		//------------------------------USING ITENS---------------------------------
+		$(".use_Item_Class").click(function(){
+			alert("Text: " + $("td").siblings("#Name_Item_0").text());	
+			
+		});
+
+
 	});
 
 

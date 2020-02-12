@@ -60,10 +60,11 @@ class Item{
         //<table id='BagHTML' class='table table-sm'></table>
 
         echo"<tr>
-                <td>HP</td>
                 <td id='Name_Item_" . $i . "'>" . $this->Name . "</td>
-                <td id='Status_Item_" . $i . "'> HP(" . $this->HP . ")" . " STR(" . $this->STR . ")" . "DEF(" . $this->DEF . ")</td>
-                <td id='Use_Item_" . $i . "><button type='button' class='btn btn-success'>Use</button></td>
+                <td id='Status_Item_HP_" . $i . "'>" . $this->HP . "</td>
+                <td id='Status_Item_STR_" . $i . "'>" . $this->STR . "</td>
+                <td id='Status_Item_DEF_" . $i . "'>" . $this->DEF . "</td>
+                <td class='use_Item_Class' id='Use_Item_" . $i . "><button type='button' class='btn btn-success'>Use</button></td>
             </tr>";
     }   
 }
