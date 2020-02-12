@@ -287,9 +287,6 @@ echo "<div class='imgheros'>
 	var Monster_AGI = document.getElementById("status_monster_AGI");
 	var Monster_EXP = document.getElementById("status_monster_EXP");
 	
-	//status itens -------->
-
-
 
 	//FUNCTIONS ----------------->
 	function BlockAll_Button(){
@@ -490,10 +487,17 @@ echo "<div class='imgheros'>
 			$("#BagRow1").toggle();	
 		});//----------------------------FINISH BAG---------------------------------
 		//------------------------------USING ITENS---------------------------------
-		$(".use_Item_Class").click(function(){
-			alert("Text: " + $("td").siblings("#Name_Item_0").text());	
-			
-		});
+		for (var i = 0; i < 11; i++) {
+			$("#Use_Item_" + i).click(function(){
+				//status of every item i click!
+				var Item_HP = $(this).parent().prev().prev().prev().text();
+				var Item_STR = $(this).parent().prev().prev().text();
+				var Item_DEF = $(this).parent().prev().text();
+				alert("hp - " + $(this).parent().prev().prev().prev().text());
+				alert("STR - " + $(this).parent().prev().prev().text());
+				alert("DEF - " + $(this).parent().prev().text());
+			});
+		}	
 
 
 	});

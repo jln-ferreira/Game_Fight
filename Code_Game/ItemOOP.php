@@ -64,7 +64,7 @@ class Item{
                 <td id='Status_Item_HP_" . $i . "'>" . $this->HP . "</td>
                 <td id='Status_Item_STR_" . $i . "'>" . $this->STR . "</td>
                 <td id='Status_Item_DEF_" . $i . "'>" . $this->DEF . "</td>
-                <td class='use_Item_Class' id='Use_Item_" . $i . "><button type='button' class='btn btn-success'>Use</button></td>
+                <td><button id='Use_Item_" . $i . "' type='button' class='btn btn-success'>Use</button></td>
             </tr>";
     }   
 }
