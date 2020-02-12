@@ -493,9 +493,14 @@ echo "<div class='imgheros'>
 				var Item_HP = $(this).parent().prev().prev().prev().text();
 				var Item_STR = $(this).parent().prev().prev().text();
 				var Item_DEF = $(this).parent().prev().text();
-				alert("hp - " + $(this).parent().prev().prev().prev().text());
-				alert("STR - " + $(this).parent().prev().prev().text());
-				alert("DEF - " + $(this).parent().prev().text());
+				
+				//using item:
+				Hero_HP.innerHTML =  parseInt(Hero_HP.innerHTML) + parseInt(Item_HP);
+				Hero_STR.innerHTML =  parseInt(Hero_STR.innerHTML) + parseInt(Item_STR);
+				Hero_DEF.innerHTML =  parseInt(Hero_DEF.innerHTML) + parseInt(Item_DEF);
+
+				$(this).parent().parent().hide();
+
 			});
 		}	
 
